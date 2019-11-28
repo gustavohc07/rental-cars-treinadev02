@@ -1,0 +1,8 @@
+<h1>Filiais</h1>
+<ul>
+  <% @filiais.each do |filial| %>
+  <li><%= link_to filial.name, subsidiary_path(filial) %></li>
+  <% end %>
+</ul>
+
+<%= link_to 'Voltar', root_path %>

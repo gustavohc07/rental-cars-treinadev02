@@ -1,0 +1,9 @@
+<h1><%= @categoria.name %></h1>
+
+<ul>
+  <li>Preco diario: <%= @categoria.daily_rate %></li>
+  <li>Seguro: <%= @categoria.car_insurance %></li>
+  <li>Seguro de terceiros: <%= @categoria.third_party_insurance %></li>
+</ul>
+
+<%= link_to 'Voltar', car_categories_path %>
