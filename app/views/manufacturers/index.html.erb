@@ -1,3 +1,9 @@
-<% @fabricantes.each do |fabricante|%>
-  <%= link_to fabricante.name, manufacturer_path(fabricante) %>
-<% end %>
+<h1>Fabricantes</h1>
+
+<ul>
+  <% @fabricantes.each do |fabricante|%>
+    <li><%= link_to fabricante.name, manufacturer_path(fabricante) %></li>
+  <% end %>
+</ul>
+
+<%= link_to 'Voltar', root_path %>
