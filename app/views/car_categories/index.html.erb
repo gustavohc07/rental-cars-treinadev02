@@ -1,0 +1,10 @@
+<h1>Categorias de Carros</h1>
+<ul>
+  <% @categorias.each do |categoria| %>
+    <li>
+      <%= link_to categoria.name, car_category_path(categoria) %>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to 'Voltar', root_path %>
