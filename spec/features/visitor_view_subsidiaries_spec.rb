@@ -25,5 +25,12 @@ feature 'Visitor View Subsidiaries' do
     expect(page).to have_css('p', text: subsidiary.address)
     expect(page).to have_link('Voltar')
   end
+
+  xscenario 'and subsidiaries are not registered' do
+    visit root_path
+    click_on 'Filiais'
+
+    expect(page).to have_content('Nao existem filiais cadastradas no sistema')
+  end
 end
 

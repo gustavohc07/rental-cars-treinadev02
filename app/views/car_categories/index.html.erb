@@ -1,8 +1,8 @@
 <h1>Categorias de Carros</h1>
 <ul>
-  <% @categorias.each do |categoria| %>
+  <% @categories.each do |category| %>
     <li>
-      <%= link_to categoria.name, car_category_path(categoria) %>
+      <%= link_to category.name, car_category_path(category) %>
     </li>
   <% end %>
 </ul>

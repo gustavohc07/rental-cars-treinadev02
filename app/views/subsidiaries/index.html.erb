@@ -1,7 +1,7 @@
 <h1>Filiais</h1>
 <ul>
-  <% @filiais.each do |filial| %>
-  <li><%= link_to filial.name, subsidiary_path(filial) %></li>
+  <% @subsidiaries.each do |subsidiary| %>
+  <li><%= link_to subsidiary.name, subsidiary_path(subsidiary) %></li>
   <% end %>
 </ul>
 

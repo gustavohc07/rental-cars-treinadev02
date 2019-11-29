@@ -1,9 +1,18 @@
 class ManufacturersController < ApplicationController
   def index 
-    @fabricantes = Manufacturer.all
+    @manufacturers = Manufacturer.all
   end
 
   def show
-    @fabricante = Manufacturer.find(params[:id])
+    @manufacturer = Manufacturer.find(params[:id])
   end
+
+  def new
+    # @manufacturer = .new
+  end
+
+  def create
+
+  end
+  
 end
