@@ -1,9 +1,10 @@
 <h1><%= @category.name %></h1>
 
 <ul>
-  <li>Preco diario: <%= @category.daily_rate %></li>
-  <li>Seguro: <%= @category.car_insurance %></li>
-  <li>Seguro de terceiros: <%= @category.third_party_insurance %></li>
+  <li>Preco diario: R$ <%= @category.daily_rate %></li>
+  <li>Seguro: R$ <%= @category.car_insurance %></li>
+  <li>Seguro de terceiros: R$ <%= @category.third_party_insurance %></li>
 </ul>
+<h4>Total : R$ <%=@category.daily_rate + @category.car_insurance + @category.third_party_insurance %></h4>
 
-<%= link_to 'Voltar', car_categories_path %>
+<div><%= link_to 'Voltar', car_categories_path %></div>

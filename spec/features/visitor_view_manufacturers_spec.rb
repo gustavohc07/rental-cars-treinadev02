@@ -17,13 +17,13 @@ feature 'Visitor view manufacturers' do
     visit root_path
     click_on 'Fabricantes'
 
-    expect(page).to have_content('Não ha fabricantes cadastrados no sistema, clique aqui para registrar um novo fabricante.')
+    expect(page).to have_content('Não ha fabricantes cadastrados no sistema, clique aqui para cadastrar um novo fabricante.')
     expect(page).to have_link('clique aqui')
 
   end
 
-  scenario 'and return to home page' do
-  Manufacturer.create(name: 'Fiat')
+  scenario 'and return to manufacturers page' do
+    Manufacturer.create(name: 'Fiat')
     Manufacturer.create(name: 'Volkswagen')
 
     visit root_path
@@ -31,6 +31,14 @@ feature 'Visitor view manufacturers' do
     click_on 'Fiat'
     click_on 'Voltar'
 
+    expect(current_path).to eq manufacturers_path
+  end
+
+  scenario 'and return to home page' do
+    visit root_path
+    click_on 'Fabricantes'
+    click_on 'Voltar'
+
     expect(current_path).to eq root_path
-end
+  end
 end

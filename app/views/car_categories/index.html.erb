@@ -1,4 +1,11 @@
 <h1>Categorias de Carros</h1>
+<% if @categories.empty? %>
+  <h3>Não há categorias cadastradas no sistema. <%= link_to 'Clique aqui', new_car_category_path %> para cadastrar uma nova categoria</h3>
+  <% else %>
+  <p><%= link_to 'Cadastrar nova categoria', new_car_category_path %></p>
+<% end %>
+
+
 <ul>
   <% @categories.each do |category| %>
     <li>
@@ -7,4 +14,4 @@
   <% end %>
 </ul>
 
-<%= link_to 'Voltar', root_path %>
+<div><%= link_to 'Voltar', root_path %></div>
