@@ -1,0 +1,14 @@
+<h1> Registrar nova categoria de carro</h1>
+
+
+<%= form_with model: @category do |f| %>
+  <%= f.label :name, 'Nome da categoria' %>
+  <%= f.text_field :name %>
+  <%= f.label :daily_rate, 'Valor da diária' %>
+  <%= f.number_field :daily_rate %>
+  <%= f.label :car_insurance, 'Valor do seguro' %>
+  <%= f.number_field :car_insurance %>
+  <%= f.label :third_party_insurance, 'Seguro contra terceiros' %>
+  <%= f.number_field :third_party_insurance %>
+  <%= f.submit 'Enviar' %>
+<% end %>

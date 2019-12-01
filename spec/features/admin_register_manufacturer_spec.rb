@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature 'Admin register manufacturer' do
-  scenario 'successfully without manufacturers registered' do
+  scenario 'successfully without any manufacturers registered' do
     visit root_path
     click_on 'Fabricantes'
     click_on 'clique aqui'

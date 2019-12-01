@@ -22,8 +22,8 @@ feature 'Visitor view manufacturers' do
 
   end
 
-  scenario 'and return to home page' do
-  Manufacturer.create(name: 'Fiat')
+  scenario 'and return to manufacturers page' do
+    Manufacturer.create(name: 'Fiat')
     Manufacturer.create(name: 'Volkswagen')
 
     visit root_path
@@ -31,6 +31,14 @@ feature 'Visitor view manufacturers' do
     click_on 'Fiat'
     click_on 'Voltar'
 
+    expect(current_path).to eq manufacturers_path
+  end
+
+  scenario 'and return to home page' do
+    visit root_path
+    click_on 'Fabricantes'
+    click_on 'Voltar'
+
     expect(current_path).to eq root_path
-end
+  end
 end
