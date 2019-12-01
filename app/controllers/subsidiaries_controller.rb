@@ -1,9 +1,9 @@
 class SubsidiariesController < ApplicationController
   def index
-    @filiais = Subsidiary.all
+    @subsidiaries = Subsidiary.all
   end
 
   def show
-    @filial = Subsidiary.find(params[:id])
+    @subsidiary = Subsidiary.find(params[:id])
   end
 end
