@@ -1,0 +1,15 @@
+<h1>Registrar uma nova filial</h1>
+
+<%= form_with model: @subsidiary do |f| %>
+  <%= f.label :name, "Nome" %>
+  <%= f.text_field :name %>
+
+  <%= f.label :cnpj, "CNPJ" %>
+  <%= f.text_field :cnpj %>
+
+  <%= f.label :address, "Endereço" %>
+  <%= f.text_field :address %>
+  <p><%= f.submit 'Enviar' %></p>
+<% end %>
+
+<p><%= link_to 'Voltar', subsidiaries_path %></p>

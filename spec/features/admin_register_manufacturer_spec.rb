@@ -24,4 +24,12 @@ feature 'Admin register manufacturer' do
 
     expect(page).to have_content('Chevrolet')
   end
+  scenario 'and do not create but return to manufacturers page' do
+    visit root_path
+    click_on 'Fabricantes'
+    click_on 'clique aqui'
+    click_on 'Voltar'
+
+    expect(current_path).to eq manufacturers_path
+  end
 end

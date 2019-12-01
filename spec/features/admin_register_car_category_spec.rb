@@ -38,4 +38,13 @@ feature 'Admin register car category' do
     expect(page).to have_content('R$ 70.0')
     expect(page).to have_content('Total : R$ 300.0')
   end
+
+  scenario 'and do not create but return to car categories page' do
+    visit root_path
+    click_on 'Categorias de Carros'
+    click_on 'Clique aqui'
+    click_on 'Voltar'
+
+    expect(current_path).to eq car_categories_path
+  end
 end
