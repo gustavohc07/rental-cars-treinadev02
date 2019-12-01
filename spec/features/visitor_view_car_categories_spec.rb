@@ -28,4 +28,11 @@ feature 'Visitor View Car Categories' do
     expect(page).to have_content(car_category.third_party_insurance)
     expect(page).to have_link('Voltar')
   end
+
+  scenario 'and there are no car categories registered' do
+    visit root_path
+    click_on 'Categorias de Carros'
+
+    expect(page).to have_content('Não há categorias cadastradas no sistema.')
+  end
 end

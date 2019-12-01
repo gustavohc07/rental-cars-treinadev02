@@ -17,7 +17,7 @@ feature 'Visitor view manufacturers' do
     visit root_path
     click_on 'Fabricantes'
 
-    expect(page).to have_content('Não ha fabricantes cadastrados no sistema, clique aqui para registrar um novo fabricante.')
+    expect(page).to have_content('Não ha fabricantes cadastrados no sistema, clique aqui para cadastrar um novo fabricante.')
     expect(page).to have_link('clique aqui')
 
   end

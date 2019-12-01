@@ -1,4 +1,8 @@
 <h1>Categorias de Carros</h1>
+<% if @categories.empty? %>
+  <h3>Não há categorias cadastradas no sistema.</h3>
+<% end %>
+
 <ul>
   <% @categories.each do |category| %>
     <li>

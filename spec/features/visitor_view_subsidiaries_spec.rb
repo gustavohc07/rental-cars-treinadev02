@@ -30,7 +30,7 @@ feature 'Visitor View Subsidiaries' do
     visit root_path
     click_on 'Filiais'
 
-    expect(page).to have_content('Não existem filiais cadastradas no sistema')
+    expect(page).to have_content('Não existem filiais cadastradas no sistema.')
   end
 end
 
