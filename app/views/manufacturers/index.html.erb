@@ -1,5 +1,13 @@
 <h1>Fabricantes</h1>
-<%= link_to 'Registrar novo fabricante', new_manufacturer_path %>
+<% if @manufacturers.any? %>
+  <%= link_to 'Registrar novo fabricante', new_manufacturer_path %>
+<%end %>
+
+<% if @manufacturers.empty? %>
+  <h3> Não ha fabricantes cadastrados no sistema, <%= link_to "clique aqui", new_manufacturer_path %> para
+  registrar um novo fabricante.
+  </h3>
+<% end %>
 
 <ul>
   <% @manufacturers.each do |manufacturer|%>
