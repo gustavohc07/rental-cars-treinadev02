@@ -25,7 +25,8 @@ class SubsidiariesController < ApplicationController
   end
 
   def update
-    @subsidiary = Subsidiary.update(subsidiary_params)
+    @subsidiary = Subsidiary.find(params[:id])
+    @subsidiary.update(subsidiary_params)
     redirect_to @subsidiary
   end
 

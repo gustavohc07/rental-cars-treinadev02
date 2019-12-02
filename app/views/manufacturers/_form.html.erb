@@ -1,0 +1,13 @@
+<% if @manufacturer.errors.any? %>
+<p>Você deve corrigir os seguintes erros:</p>
+  <% @manufacturer.errors.full_messages.each do |message| %>
+    <li> <%= message %> </li>
+  <% end %>
+<% end %>
+
+<%= form_with model: manufacturer, local: true do |f| %>
+  <%= f.label :name, 'Nome'%>
+  <%= f.text_field :name%>
+
+  <%= f.submit 'Enviar' %>
+<% end %>
