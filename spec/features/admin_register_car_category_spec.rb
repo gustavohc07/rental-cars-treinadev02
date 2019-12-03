@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-feature 'Admin register car category' do
-  scenario 'successfully without any car category registered' do
+feature 'Admin register car car_category' do
+  scenario 'successfully without any car car_category registered' do
     visit root_path
-    click_on 'Categorias de Carros'
+    click_on 'Categoria de Carros'
     click_on 'Clique aqui'
 
     fill_in 'Nome da categoria', with: 'Sedan'
@@ -20,10 +20,10 @@ feature 'Admin register car category' do
   end
 
   scenario 'and with car registered on database' do
-    CarCategory.create!(name:'Sedan', daily_rate: 100, car_insurance: 50, third_party_insurance: 50)
+    CarCategory.create!(name: 'Sedan', daily_rate: 100, car_insurance: 50, third_party_insurance: 50)
 
     visit root_path
-    click_on 'Categorias de Carros'
+    click_on 'Categoria de Carros'
     click_on 'Cadastrar nova categoria'
 
     fill_in 'Nome da categoria', with: 'SUV'
@@ -39,9 +39,9 @@ feature 'Admin register car category' do
     expect(page).to have_content('Total : R$ 300.0')
   end
 
-  scenario 'and do not create but return to car categories page' do
+  scenario 'and do not create but return to car car_categories page' do
     visit root_path
-    click_on 'Categorias de Carros'
+    click_on 'Categoria de Carros'
     click_on 'Clique aqui'
     click_on 'Voltar'
 

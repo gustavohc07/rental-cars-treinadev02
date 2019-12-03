@@ -1,10 +1,12 @@
-<h1><%= @category.name %></h1>
+<h1><%= @car_category.name %></h1>
 
 <ul>
-  <li>Preco diario: R$ <%= @category.daily_rate %></li>
-  <li>Seguro: R$ <%= @category.car_insurance %></li>
-  <li>Seguro de terceiros: R$ <%= @category.third_party_insurance %></li>
+  <li>Preco diario: R$ <%= @car_category.daily_rate %></li>
+  <li>Seguro: R$ <%= @car_category.car_insurance %></li>
+  <li>Seguro de terceiros: R$ <%= @car_category.third_party_insurance %></li>
 </ul>
-<h4>Total : R$ <%=@category.daily_rate + @category.car_insurance + @category.third_party_insurance %></h4>
+<h4>Total : R$ <%= @car_category.daily_rate + @car_category.car_insurance + @car_category.third_party_insurance %></h4>
+
+<div><%= link_to 'Editar', edit_car_category_path(@car_category) %></div>
 
 <div><%= link_to 'Voltar', car_categories_path %></div>
