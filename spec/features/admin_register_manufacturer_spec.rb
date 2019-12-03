@@ -39,16 +39,16 @@ feature 'Admin register manufacturer' do
                              # quando algo novo esta sendo criado.
     click_on 'Enviar'
 
-    expect(page).to have_content('Você deve corrigir os seguintes erros:') #trocar para msg mais genérica
+    expect(page).to have_content('Você deve corrigir os seguintes erros:')
   end 
 
-    scenario 'and name must be unique' do
-      Manufacturer.create(name: 'Fiat')
+  scenario 'and name must be unique' do
+    Manufacturer.create(name: 'Fiat')
 
-      visit new_manufacturer_path
-      fill_in 'Nome', with: 'Fiat'
-      click_on 'Enviar'
-  
-      expect(page).to have_content('Name já está em uso')
-  end
+    visit new_manufacturer_path
+    fill_in 'Nome', with: 'Fiat'
+    click_on 'Enviar'
+
+    expect(page).to have_content('Name já está em uso')
+end
 end

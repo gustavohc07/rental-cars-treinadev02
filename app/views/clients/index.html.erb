@@ -1,0 +1,24 @@
+<h1>Lista de usuários</h1>
+
+<% if @clients.any? %>
+<table>
+  <tr>
+    <th>Nome</th>
+    <th>Email</th>
+    <th>CPF</th>
+  </tr>
+  <% @clients.each do |client| %>
+    <tr>
+      <td><%= client.name %></td>
+      <td><%= client.email %></td>
+      <td><%= cpf_format(client.cpf) %></td>
+      <td><%= link_to 'Excluir' %></td>
+    </tr>
+  <% end %>
+</table>
+<% else %>
+  <h3>Não existem usuários cadastrados. <%= link_to 'Clique aqui', new_client_path %> para cadastrar um novo usuário.</h3>
+<% end %>
+
+<%= link_to 'Registrar novo usuario', new_client_path %>
+<%= link_to 'Voltar', root_path %>

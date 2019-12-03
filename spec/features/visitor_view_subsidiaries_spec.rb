@@ -23,7 +23,7 @@ feature 'Visitor View Subsidiaries' do
     click_on 'Coringa'
 
     expect(page).to have_css('h1', text: subsidiary.name)
-    expect(page).to have_css('p', text: subsidiary.cnpj)
+    expect(page).to have_css('p', text: '12.345.678/9100-01')
     expect(page).to have_css('p', text: subsidiary.address)
     expect(page).to have_link('Voltar')
   end
@@ -55,4 +55,3 @@ feature 'Visitor View Subsidiaries' do
     expect(page).to have_content('Não existem filiais cadastradas no sistema. Clique aqui para cadastrar uma nova filial.')
   end
 end
-

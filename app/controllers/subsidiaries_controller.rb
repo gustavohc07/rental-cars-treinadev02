@@ -26,8 +26,17 @@ class SubsidiariesController < ApplicationController
 
   def update
     @subsidiary = Subsidiary.find(params[:id])
-    @subsidiary.update(subsidiary_params)
-    redirect_to @subsidiary
+    if @subsidiary.update(subsidiary_params)
+      redirect_to @subsidiary
+    else
+      render :new
+    end
+  end
+
+  def destroy
+    @subsidiary = Subsidiary.find(params[:id])
+    @subsidiary.destroy
+    redirect_to subsidiaries_path
   end
 
   private
