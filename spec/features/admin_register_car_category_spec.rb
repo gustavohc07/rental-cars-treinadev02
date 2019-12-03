@@ -20,7 +20,7 @@ feature 'Admin register car category' do
   end
 
   scenario 'and with car registered on database' do
-    CarCategory.create(name:'Sedan', daily_rate: 100, car_insurance: 50, third_party_insurance: 50)
+    CarCategory.create!(name:'Sedan', daily_rate: 100, car_insurance: 50, third_party_insurance: 50)
 
     visit root_path
     click_on 'Categorias de Carros'

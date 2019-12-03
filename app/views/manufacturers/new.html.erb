@@ -1,10 +1,5 @@
 <h1>Cadastrar novo fabricante</h1>
 
-<%= form_with model: @manufacturer do |f| %>
-  <%= f.label :name, 'Nome'%>
-  <%= f.text_field :name%>
-
-  <%= f.submit 'Enviar' %>
-<% end %>
+<%= render partial: 'form', locals: {manufacturer: @manufacturer}%>
 
 <div><%= link_to 'Voltar', manufacturers_path %></div>

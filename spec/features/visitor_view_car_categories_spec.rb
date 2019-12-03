@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'Visitor View Car Categories' do
   scenario 'successfully' do
-    car_category = CarCategory.create(name: 'Sedan', daily_rate: 24.5,
+    car_category = CarCategory.create!(name: 'Sedan', daily_rate: 24.5,
                                       car_insurance: 12.5,
                                       third_party_insurance: 17.5)
     visit root_path
@@ -15,7 +15,7 @@ feature 'Visitor View Car Categories' do
   end
 
   scenario 'and view car category details' do
-    car_category = CarCategory.create(name: 'Sedan', daily_rate: 24.5,
+    car_category = CarCategory.create!(name: 'Sedan', daily_rate: 24.5,
                                       car_insurance: 12.5,
                                       third_party_insurance: 17.5)
     visit root_path
@@ -37,7 +37,7 @@ feature 'Visitor View Car Categories' do
   end
 
   scenario 'and return to car categories page' do
-    CarCategory.create(name: 'Sedan', daily_rate: 24.5,
+    CarCategory.create!(name: 'Sedan', daily_rate: 24.5,
                                       car_insurance: 12.5,
                                       third_party_insurance: 17.5)
     visit root_path

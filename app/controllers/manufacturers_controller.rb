@@ -15,9 +15,24 @@ class ManufacturersController < ApplicationController
   def create
     @manufacturer = Manufacturer.new(manufacturer_params)
     if @manufacturer.save
+      flash[:alert] = "#{@manufacturer.name} cadastrado com sucesso"
       redirect_to @manufacturer
     else
       render :new
+    end
+  end
+
+  def edit
+    @manufacturer = Manufacturer.find(params[:id])
+  end
+
+  def update
+    @manufacturer = Manufacturer.find(params[:id])
+    if @manufacturer.update(manufacturer_params)
+      flash[:notice] = 'Fabricante atualizado com sucesso'
+      redirect_to @manufacturer
+    else
+      render :edit
     end
   end
   

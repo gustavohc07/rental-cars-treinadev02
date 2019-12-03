@@ -13,7 +13,7 @@ feature 'Admin register subsidiary' do
   end
 
   scenario 'successfully with subsidiary registered' do
-    Subsidiary.create(name: 'Coringa', cnpj: '1234567891000',
+    Subsidiary.create!(name: 'Coringa', cnpj: '1234567891000',
                       address: 'Rua Golveia, Numero 1250, Bairro Santao Amaro')
 
     visit root_path

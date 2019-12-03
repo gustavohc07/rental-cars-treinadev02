@@ -2,7 +2,7 @@ require "rails_helper"
 
 feature 'Admin edit subsidiary' do
   scenario 'successfully' do
-    Subsidiary.create(name: 'Coringa', cnpj: '12345678910001',
+    Subsidiary.create!(name: 'Coringa', cnpj: '12345678910001',
                       address: 'Rua Augusta, Bairro Santa Monica, CEP 12345-678, Numero 25')
 
     visit root_path

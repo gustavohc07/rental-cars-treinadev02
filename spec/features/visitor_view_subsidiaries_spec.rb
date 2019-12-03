@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'Visitor View Subsidiaries' do
   scenario 'successfully' do
-    subsidiary = Subsidiary.create(name: 'Coringa', cnpj: '12345678910001',
+    subsidiary = Subsidiary.create!(name: 'Coringa', cnpj: '12345678910001',
                                    address: 'Rua Augusta, Bairro Santa Monica, CEP 12345-678, Numero 25')
 
     visit root_path
@@ -15,7 +15,7 @@ feature 'Visitor View Subsidiaries' do
   end
 
   scenario 'and view subsidiary' do
-    subsidiary = Subsidiary.create(name: 'Coringa', cnpj: '12345678910001',
+    subsidiary = Subsidiary.create!(name: 'Coringa', cnpj: '12345678910001',
                                    address: 'Rua Augusta, Bairro Santa Monica, CEP 12345-678, Numero 25')
 
     visit root_path
