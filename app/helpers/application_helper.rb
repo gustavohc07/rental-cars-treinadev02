@@ -7,4 +7,12 @@ module ApplicationHelper
     cnpj_array[11] << '-'
     cnpj_array.join
   end
+
+  def cpf_format(cpf)
+    cpf_array = cpf.split('')
+    cpf_array[2] << '.'
+    cpf_array[5] << '.'
+    cpf_array[8] << '-'
+    cpf_array.join
+  end
 end
