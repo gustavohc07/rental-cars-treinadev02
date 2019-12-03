@@ -7,13 +7,17 @@ feature 'Admin register subsidiary' do
     click_on 'Clique aqui'
 
     fill_in 'Nome', with: 'SmartCar'
-    fill_in 'CNPJ', with: '00.000.000/0001-00'
+    fill_in 'CNPJ', with: '00000000000100'
     fill_in 'Endereço', with: 'Rua Professor Euler, Numero 327, CEP 00000-00'
     click_on "Enviar"
+
+    expect(page).to have_content('SmartCar')
+    expect(page).to have_content('00.000.000/0001-00')
+    expect(page).to have_content('Rua Professor Euler, Numero 327, CEP 00000-00')
   end
 
   scenario 'successfully with subsidiary registered' do
-    Subsidiary.create!(name: 'Coringa', cnpj: '1234567891000',
+    Subsidiary.create!(name: 'Coringa', cnpj: '12345678910000',
                       address: 'Rua Golveia, Numero 1250, Bairro Santao Amaro')
 
     visit root_path
@@ -21,9 +25,43 @@ feature 'Admin register subsidiary' do
     click_on 'Cadastrar nova filial'
 
     fill_in 'Nome', with: 'SmartCar'
-    fill_in 'CNPJ', with: '00.000.000/0001-00'
+    fill_in 'CNPJ', with: '00000000000100'
     fill_in 'Endereço', with: 'Rua Professor Euler, Numero 327, CEP 00000-00'
     click_on "Enviar"
+
+    expect(page).to have_content('SmartCar')
+    expect(page).to have_content('00.000.000/0001-00')
+    expect(page).to have_content('Rua Professor Euler, Numero 327, CEP 00000-00')
+  end
+
+  scenario 'and fill in all field' do
+    visit new_subsidiary_path
+    click_on 'Enviar'
+
+    expect(page).to have_content('Você deve corrigir os seguintes erros:')
+    expect(page).to have_content('não deve ficar em branco.')
+  end
+
+  scenario 'and enter a valid CNPJ' do
+    visit new_subsidiary_path
+    fill_in "CNPJ", with: '1234.'
+    click_on 'Enviar'
+
+    expect(page).to have_content('deve conter 14 caracteres')
+    expect(page).to have_content('deve conter apenas números')
+  end
+
+  scenario 'and CNPJ must be unique' do
+    Subsidiary.create!(name: 'Coringa', cnpj: '12345678910000',
+                       address: 'Rua Golveia, Numero 1250, Bairro Santao Amaro')
+
+    visit new_subsidiary_path
+    fill_in 'Nome', with: 'Stock rent car'
+    fill_in 'CNPJ', with: '12345678910000'
+    fill_in 'Nome', with: 'Rua Borba Gato, Numero 500, Bairro Santao Amaro'
+    click_on 'Enviar'
+
+    expect(page).to have_content('já existe!')
   end
 
   scenario 'and do not create but return to subsidiaries page' do
