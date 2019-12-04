@@ -16,9 +16,9 @@
     </tr>
   <% end %>
 </table>
+<%= link_to 'Registrar novo usuario', new_client_path %>
 <% else %>
   <h3>Não existem usuários cadastrados. <%= link_to 'Clique aqui', new_client_path %> para cadastrar um novo usuário.</h3>
 <% end %>
 
-<%= link_to 'Registrar novo usuario', new_client_path %>
 <%= link_to 'Voltar', root_path %>
