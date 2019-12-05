@@ -40,4 +40,11 @@ feature 'User register new client' do
     expect(page).to have_content('abobrinha2@abobrinha.com')
     expect(page).to have_content('123.456.789-11')
   end
+
+  scenario 'and do not register but go back to clients page' do
+    visit new_client_path
+    click_on 'Voltar'
+
+    expect(current_path).to eq clients_path
+  end
 end

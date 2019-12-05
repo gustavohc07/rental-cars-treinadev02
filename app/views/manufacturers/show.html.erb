@@ -1,5 +1,24 @@
 <h1><%= @manufacturer.name%></h1>
+<br>
+<table>
+  <caption><%= @manufacturer.name %> - modelo de carros</caption>
+<tr>
+  <th>Modelo</th>
+  <th>Ano</th>
+  <th>Combustivel</th>
+  <th>Motor</th>
+</tr>
+  <% @manufacturer.car_models.each do |model| %>
+  <tr>
+    <td><%= link_to model.name, model %></td>
+    <td> <%= model.year %></td>
+    <td> <%= model.fuel_type %></td>
+    <td> <%= model.motorization %></td>
+  </tr>
+    <% end %>
+</table>
+<br>
 
-<div><%= link_to 'Editar', edit_manufacturer_path(@manufacturer)%></div>
+<div><%= link_to 'Editar Fabricante', edit_manufacturer_path(@manufacturer)%></div>
 
 <div><%= link_to 'Voltar', manufacturers_path%></div>

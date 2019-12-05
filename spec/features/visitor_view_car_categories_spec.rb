@@ -36,7 +36,7 @@ feature 'Visitor View Car Categories' do
     expect(page).to have_content('Não há categorias cadastradas no sistema.')
   end
 
-  scenario 'and return to car car_categories page' do
+  scenario 'and return to car_categories page' do
     CarCategory.create!(name: 'Sedan', daily_rate: 24.5,
                                       car_insurance: 12.5,
                                       third_party_insurance: 17.5)

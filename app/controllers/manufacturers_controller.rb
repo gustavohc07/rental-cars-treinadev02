@@ -1,6 +1,5 @@
 class ManufacturersController < ApplicationController
-  def index 
-    @car_models = CarModel.all
+  def index
     @manufacturers = Manufacturer.all
   end
 
