@@ -7,3 +7,9 @@
 <dt>Categoria:</dt>
 <dd> <%=@car_model.car_category.name%> </dd>
 </dl>
+
+<%= link_to 'Voltar', car_models_path %>
+<br>
+<%= link_to "Ir para o fabricante #{@car_model.manufacturer.name}", manufacturer_path(@car_model.manufacturer) %>
+<br>
+<%= link_to "Ir para a categoria #{@car_model.car_category.name}", car_category_path(@car_model.car_category) %>

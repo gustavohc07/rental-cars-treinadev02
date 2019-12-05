@@ -1,5 +1,6 @@
 class CarModelsController < ApplicationController
-  def index 
+  def index
+    @car_models = CarModel.all
   end
 
   def show

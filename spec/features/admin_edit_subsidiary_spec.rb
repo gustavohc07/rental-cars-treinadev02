@@ -57,4 +57,14 @@ feature 'Admin edit subsidiary' do
 
     expect(page).to have_content('já existe!')
   end
+
+  scenario 'and may go back to subsidiary page' do
+    subsidiary = Subsidiary.create!(name: 'Coringa', cnpj: '12345678910001',
+                       address: 'Rua Augusta, Bairro Santa Monica, CEP 12345-678, Numero 25')
+
+    visit edit_subsidiary_path(subsidiary)
+    click_on 'Voltar'
+
+    expect(current_path).to eq subsidiary_path(subsidiary)
+  end
 end

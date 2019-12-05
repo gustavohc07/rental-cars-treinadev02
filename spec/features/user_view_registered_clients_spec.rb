@@ -23,4 +23,11 @@ feature 'User view registered clients' do
     expect(page).to have_content('Não existem usuários cadastrados. Clique aqui para cadastrar um novo usuário.')
     expect(page).to have_link('Clique aqui')
   end
+  scenario 'and return to home page' do
+    visit root_path
+    click_on 'Usuários registrados'
+    click_on 'Voltar'
+
+    expect(current_path).to eq root_path
+  end
 end
