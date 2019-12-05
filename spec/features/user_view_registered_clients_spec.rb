@@ -3,7 +3,7 @@ require 'rails_helper'
 feature 'User view registered clients' do
   scenario 'successfully' do
     Client.create!(name: 'Gustavo', email: 'abobrinha@abobrinha.com',
-                   cpf: '123.456.789-10')
+                   cpf: '12345678910')
 
     visit root_path
     click_on 'Usuários registrados'
