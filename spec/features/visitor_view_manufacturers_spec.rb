@@ -19,7 +19,6 @@ feature 'Visitor view manufacturers' do
 
     expect(page).to have_content('Não ha fabricantes cadastrados no sistema, clique aqui para cadastrar um novo fabricante.')
     expect(page).to have_link('clique aqui')
-
   end
 
   scenario 'and return to manufacturers page' do

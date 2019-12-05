@@ -16,7 +16,7 @@ feature 'Admin edits manufacturer' do
   end
 
   scenario 'and must fill in all fields' do
-    Manufacturer.create(name: 'Fiat')
+    Manufacturer.create!(name: 'Fiat')
 
     visit root_path
     click_on 'Fabricantes'
@@ -29,8 +29,8 @@ feature 'Admin edits manufacturer' do
   end 
 
   scenario 'and name must be unique' do
-    Manufacturer.create(name: 'Fiat')
-    Manufacturer.create(name: 'Honda')
+    Manufacturer.create!(name: 'Fiat')
+    Manufacturer.create!(name: 'Honda')
 
     visit root_path
     click_on 'Fabricantes'
@@ -40,5 +40,17 @@ feature 'Admin edits manufacturer' do
     click_on 'Enviar'
   
     expect(page).to have_content('Name já está em uso')
+  end
+
+  scenario 'and may go back to manufacturer page' do
+    manufacturer = Manufacturer.create!(name: 'Fiat')
+
+    visit root_path
+    click_on 'Fabricantes'
+    click_on 'Fiat'
+    click_on 'Editar'
+    click_on 'Voltar'
+
+    expect(current_path).to eq manufacturer_path(manufacturer)
   end
 end
