@@ -26,8 +26,9 @@
   </table>
   <%= link_to 'Registrar novo modelo', new_car_model_path%>
 <% else %>
-  <h2>Não há modelos cadastrados no sistema. <%= link_to 'Clique aqui', new_car_model_path %> para cadastrar um novo modelo</h2>
+  <h3>Não há modelos cadastrados no sistema. <%= link_to 'Clique aqui', new_car_model_path %> para cadastrar um novo modelo</h3>
 <% end %>
+<br>
 <br>
 <%= link_to 'Voltar', root_path %>
 
