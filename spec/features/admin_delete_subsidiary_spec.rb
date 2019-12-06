@@ -4,7 +4,10 @@ feature 'Admin delete subsidiary' do
   scenario 'successfully' do
     Subsidiary.create!(name: 'Coringa', cnpj: '12345678910001',
                                     address: 'Rua Augusta, Bairro Santa Monica, CEP 12345-678, Numero 25')
+                                    
+    user = User.create!(email: 'test@test.com', password: '123456')
 
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Filiais'
     click_on 'Coringa'
@@ -19,7 +22,9 @@ feature 'Admin delete subsidiary' do
                        address: 'Rua Augusta, Bairro Santa Monica, CEP 12345-678, Numero 25')
     Subsidiary.create!(name: 'Coringa 2.0', cnpj: '12345678910002',
                        address: 'Rua Augusta, Bairro Santa Monica, CEP 12345-678, Numero 25')
+    user = User.create!(email: 'test@test.com', password: '123456')
 
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Filiais'
     click_on 'Bento'

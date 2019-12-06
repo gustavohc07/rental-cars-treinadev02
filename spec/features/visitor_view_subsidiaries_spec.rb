@@ -2,6 +2,9 @@ require 'rails_helper'
 
 feature 'Visitor View Subsidiaries' do
   scenario 'successfully' do
+    user = User.create!(email: 'test@test.com', password: '123456')
+
+    login_as(user, scope: :user)
     subsidiary = Subsidiary.create!(name: 'Coringa', cnpj: '12345678910001',
                                    address: 'Rua Augusta, Bairro Santa Monica, CEP 12345-678, Numero 25')
 
@@ -15,6 +18,9 @@ feature 'Visitor View Subsidiaries' do
   end
 
   scenario 'and view subsidiary' do
+    user = User.create!(email: 'test@test.com', password: '123456')
+
+    login_as(user, scope: :user)
     subsidiary = Subsidiary.create!(name: 'Coringa', cnpj: '12345678910001',
                                    address: 'Rua Augusta, Bairro Santa Monica, CEP 12345-678, Numero 25')
 
@@ -29,6 +35,9 @@ feature 'Visitor View Subsidiaries' do
   end
 
   scenario 'and return to subsidiaries page' do
+    user = User.create!(email: 'test@test.com', password: '123456')
+
+    login_as(user, scope: :user)
     Subsidiary.create(name: 'Coringa', cnpj: '12345678910001',
                       address: 'Rua Augusta, Bairro Santa Monica, CEP 12345-678, Numero 25')
 
@@ -41,6 +50,9 @@ feature 'Visitor View Subsidiaries' do
   end
 
   scenario 'and return to home page' do
+    user = User.create!(email: 'test@test.com', password: '123456')
+
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Filiais'
     click_on 'Voltar'
@@ -49,9 +61,18 @@ feature 'Visitor View Subsidiaries' do
   end
 
   scenario 'and subsidiaries are not registered' do
+    user = User.create!(email: 'test@test.com', password: '123456')
+
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Filiais'
 
     expect(page).to have_content('Não existem filiais cadastradas no sistema. Clique aqui para cadastrar uma nova filial.')
+  end
+
+  scenario 'and must be logged in' do
+    visit subsidiaries_path
+
+    expect(current_path).to eq new_user_session_path
   end
 end

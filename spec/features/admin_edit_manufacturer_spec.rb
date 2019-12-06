@@ -3,7 +3,9 @@ require 'rails_helper'
 feature 'Admin edits manufacturer' do
   scenario 'successfully' do
     Manufacturer.create!(name: 'Fiat')
+    user = User.create!(email: 'test@test.com', password: '123456')
 
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Fabricantes'
     click_on 'Fiat'
@@ -18,6 +20,9 @@ feature 'Admin edits manufacturer' do
   scenario 'and must fill in all fields' do
     Manufacturer.create!(name: 'Fiat')
 
+    user = User.create!(email: 'test@test.com', password: '123456')
+
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Fabricantes'
     click_on 'Fiat'
@@ -32,6 +37,9 @@ feature 'Admin edits manufacturer' do
     Manufacturer.create!(name: 'Fiat')
     Manufacturer.create!(name: 'Honda')
 
+    user = User.create!(email: 'test@test.com', password: '123456')
+
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Fabricantes'
     click_on 'Fiat'
@@ -45,6 +53,9 @@ feature 'Admin edits manufacturer' do
   scenario 'and may go back to manufacturer page' do
     manufacturer = Manufacturer.create!(name: 'Fiat')
 
+    user = User.create!(email: 'test@test.com', password: '123456')
+
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Fabricantes'
     click_on 'Fiat'

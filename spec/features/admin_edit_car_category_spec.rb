@@ -3,7 +3,9 @@ require "rails_helper"
 feature 'Admin edit car car_category' do
   scenario 'successfully' do
     CarCategory.create!(name: 'Sedan', daily_rate: 100, car_insurance: 50, third_party_insurance: 50)
+    user = User.create!(email: 'test@test.com', password: '123456')
 
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Categoria de Carros'
     click_on 'Sedan'
@@ -22,7 +24,9 @@ feature 'Admin edit car car_category' do
   end
   scenario 'and may go back to car category page' do
     category = CarCategory.create!(name: 'Sedan', daily_rate: 100, car_insurance: 50, third_party_insurance: 50)
+    user = User.create!(email: 'test@test.com', password: '123456')
 
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Categoria de Carros'
     click_on 'Sedan'

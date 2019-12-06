@@ -8,8 +8,10 @@
 <dd> <%=@car_model.car_category.name%> </dd>
 </dl>
 
-<%= link_to 'Voltar', car_models_path %>
+<%= link_to 'Editar', edit_car_model_path(@car_model)%>
 <br>
 <%= link_to "Ir para o fabricante #{@car_model.manufacturer.name}", manufacturer_path(@car_model.manufacturer) %>
 <br>
 <%= link_to "Ir para a categoria #{@car_model.car_category.name}", car_category_path(@car_model.car_category) %>
+<br>
+<%= link_to 'Voltar', car_models_path %>

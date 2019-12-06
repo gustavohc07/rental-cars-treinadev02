@@ -17,12 +17,22 @@ class CarModelsController < ApplicationController
     @car_model = CarModel.new(car_model_params)
     if @car_model.save
       redirect_to @car_model
-      flash[:notice] = 'Modelo registrado com sucesso'
+      flash[:notice] = 'Modelo registrado com sucessso'
     else
       @manufacturers = Manufacturer.all
       @car_categories = CarCategory.all
       render :new
     end
+  end
+
+  def edit
+    @car_model = CarModel.find(params[:id])
+    @manufacturers = Manufacturer.all
+    @car_categories = CarCategory.all
+  end
+
+  def update
+    @car_model = CarModel.new(car_model_params)
   end
 
   private

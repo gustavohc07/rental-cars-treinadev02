@@ -5,6 +5,9 @@ feature 'Admin edit subsidiary' do
     Subsidiary.create!(name: 'Coringa', cnpj: '12345678910001',
                       address: 'Rua Augusta, Bairro Santa Monica, CEP 12345-678, Numero 25')
 
+    user = User.create!(email: 'test@test.com', password: '123456')
+
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Filiais'
     click_on 'Coringa'
@@ -25,6 +28,9 @@ feature 'Admin edit subsidiary' do
     subsidiary = Subsidiary.create!(name: 'Coringa', cnpj: '12345678910001',
                        address: 'Rua Augusta, Bairro Santa Monica, CEP 12345-678, Numero 25')
 
+    user = User.create!(email: 'test@test.com', password: '123456')
+
+    login_as(user, scope: :user)
     visit edit_subsidiary_path(subsidiary)
     fill_in 'Nome', with: ''
     click_on 'Enviar'
@@ -37,6 +43,9 @@ feature 'Admin edit subsidiary' do
     subsidiary = Subsidiary.create!(name: 'Coringa', cnpj: '12345678910001',
                                     address: 'Rua Augusta, Bairro Santa Monica, CEP 12345-678, Numero 25')
 
+    user = User.create!(email: 'test@test.com', password: '123456')
+
+    login_as(user, scope: :user)
     visit edit_subsidiary_path(subsidiary)
     fill_in "CNPJ", with: '1234.'
     click_on 'Enviar'
@@ -51,6 +60,10 @@ feature 'Admin edit subsidiary' do
     subsidiary = Subsidiary.create!(name: 'Coringa 2.0', cnpj: '12345678910002',
                                     address: 'Rua Borba Gato, Bairro Santo Amaro, CEP 12345-678, Numero 25')
 
+
+    user = User.create!(email: 'test@test.com', password: '123456')
+
+    login_as(user, scope: :user)
     visit edit_subsidiary_path(subsidiary)
     fill_in 'CNPJ', with: '12345678910001'
     click_on 'Enviar'
@@ -62,6 +75,9 @@ feature 'Admin edit subsidiary' do
     subsidiary = Subsidiary.create!(name: 'Coringa', cnpj: '12345678910001',
                        address: 'Rua Augusta, Bairro Santa Monica, CEP 12345-678, Numero 25')
 
+    user = User.create!(email: 'test@test.com', password: '123456')
+
+    login_as(user, scope: :user)
     visit edit_subsidiary_path(subsidiary)
     click_on 'Voltar'
 
