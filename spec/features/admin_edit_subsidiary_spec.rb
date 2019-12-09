@@ -5,7 +5,7 @@ feature 'Admin edit subsidiary' do
     Subsidiary.create!(name: 'Coringa', cnpj: '12345678910001',
                       address: 'Rua Augusta, Bairro Santa Monica, CEP 12345-678, Numero 25')
 
-    user = User.create!(email: 'test@test.com', password: '123456')
+    user = User.create!(email: 'test@test.com', password: '123456', role: :admin)
 
     login_as(user, scope: :user)
     visit root_path
@@ -28,7 +28,7 @@ feature 'Admin edit subsidiary' do
     subsidiary = Subsidiary.create!(name: 'Coringa', cnpj: '12345678910001',
                        address: 'Rua Augusta, Bairro Santa Monica, CEP 12345-678, Numero 25')
 
-    user = User.create!(email: 'test@test.com', password: '123456')
+    user = User.create!(email: 'test@test.com', password: '123456', role: :admin)
 
     login_as(user, scope: :user)
     visit edit_subsidiary_path(subsidiary)
@@ -43,7 +43,7 @@ feature 'Admin edit subsidiary' do
     subsidiary = Subsidiary.create!(name: 'Coringa', cnpj: '12345678910001',
                                     address: 'Rua Augusta, Bairro Santa Monica, CEP 12345-678, Numero 25')
 
-    user = User.create!(email: 'test@test.com', password: '123456')
+    user = User.create!(email: 'test@test.com', password: '123456', role: :admin)
 
     login_as(user, scope: :user)
     visit edit_subsidiary_path(subsidiary)
@@ -61,7 +61,7 @@ feature 'Admin edit subsidiary' do
                                     address: 'Rua Borba Gato, Bairro Santo Amaro, CEP 12345-678, Numero 25')
 
 
-    user = User.create!(email: 'test@test.com', password: '123456')
+    user = User.create!(email: 'test@test.com', password: '123456', role: :admin)
 
     login_as(user, scope: :user)
     visit edit_subsidiary_path(subsidiary)
@@ -75,12 +75,33 @@ feature 'Admin edit subsidiary' do
     subsidiary = Subsidiary.create!(name: 'Coringa', cnpj: '12345678910001',
                        address: 'Rua Augusta, Bairro Santa Monica, CEP 12345-678, Numero 25')
 
-    user = User.create!(email: 'test@test.com', password: '123456')
+    user = User.create!(email: 'test@test.com', password: '123456', role: :admin)
 
     login_as(user, scope: :user)
     visit edit_subsidiary_path(subsidiary)
     click_on 'Voltar'
 
     expect(current_path).to eq subsidiary_path(subsidiary)
+  end
+  scenario 'and must be admin to edit' do
+    subsidiary = Subsidiary.create!(name: 'Coringa', cnpj: '12345678910001',
+                                    address: 'Rua Augusta, Bairro Santa Monica, CEP 12345-678, Numero 25')
+
+    user = User.create!(email: 'test@test.com', password: '123456')
+
+    login_as(user, scope: :user)
+    visit edit_subsidiary_path(subsidiary)
+
+
+    expect(page).to have_content('Você não tem autorização!')
+  end
+
+  scenario 'and must be logged in' do
+    subsidiary = Subsidiary.create!(name: 'Coringa', cnpj: '12345678910001',
+                                    address: 'Rua Augusta, Bairro Santa Monica, CEP 12345-678, Numero 25')
+
+    visit edit_subsidiary_path(subsidiary)
+
+    expect(current_path).to eq new_user_session_path
   end
 end

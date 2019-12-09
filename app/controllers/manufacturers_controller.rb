@@ -1,6 +1,6 @@
 class ManufacturersController < ApplicationController
   before_action :authenticate_user!
-  before_action :authorize_admin, 
+  before_action :authorize_admin, only: [:new, :create, :edit, :update]
   before_action :set_manufacturer, only: [:show, :edit, :update]
   
   def index

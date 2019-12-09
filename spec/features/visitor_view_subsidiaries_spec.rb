@@ -6,7 +6,7 @@ feature 'Visitor View Subsidiaries' do
 
     login_as(user, scope: :user)
     subsidiary = Subsidiary.create!(name: 'Coringa', cnpj: '12345678910001',
-                                   address: 'Rua Augusta, Bairro Santa Monica, CEP 12345-678, Numero 25')
+                                    address: 'Rua Augusta, Bairro Santa Monica, CEP 12345-678, Numero 25')
 
     visit root_path
     click_on 'Filiais'
@@ -22,7 +22,7 @@ feature 'Visitor View Subsidiaries' do
 
     login_as(user, scope: :user)
     subsidiary = Subsidiary.create!(name: 'Coringa', cnpj: '12345678910001',
-                                   address: 'Rua Augusta, Bairro Santa Monica, CEP 12345-678, Numero 25')
+                                    address: 'Rua Augusta, Bairro Santa Monica, CEP 12345-678, Numero 25')
 
     visit root_path
     click_on 'Filiais'
@@ -67,7 +67,7 @@ feature 'Visitor View Subsidiaries' do
     visit root_path
     click_on 'Filiais'
 
-    expect(page).to have_content('Não existem filiais cadastradas no sistema. Clique aqui para cadastrar uma nova filial.')
+    expect(page).to have_content('Não existem filiais cadastradas no sistema.')
   end
 
   scenario 'and must be logged in' do

@@ -6,12 +6,16 @@
 <h3>CNPJ</h3>
 <p><%= cnpj_format(@subsidiary.cnpj) %></p>
 
-<div>
-  <%= link_to 'Editar', edit_subsidiary_path(@subsidiary) %>
-</div>
 
- <div class = 'btn-danger'><%= link_to 'Excluir', subsidiary_path(@subsidiary), method: :delete,
+
+<% if current_user.admin? %>
+  <div>
+    <%= link_to 'Editar', edit_subsidiary_path(@subsidiary) %>
+  </div>
+  <div class = 'btn-danger'><%= link_to 'Excluir', subsidiary_path(@subsidiary), method: :delete,
                   data: {confirm: 'Tem certeza?'}  %>
- </div>
+  </div>
+<% end %>
 
-<div><%= link_to 'Voltar', subsidiaries_path %></div>
+<div><%= link_to 'Voltar', subsidiaries_path %></div><br>
+<!--<div><%#= link_to 'Ver frota', car_path(@subsidiary) %></div>-->

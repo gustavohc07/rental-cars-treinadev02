@@ -1,12 +1,17 @@
 <h1>Fabricantes</h1>
-<% if @manufacturers.any? %>
+<% if @manufacturers.any? && current_user.admin? %>
   <%= link_to 'Registrar novo fabricante', new_manufacturer_path %>
 <%end %>
 
 <% if @manufacturers.empty? %>
-  <h3> Não ha fabricantes cadastrados no sistema, <%= link_to "clique aqui", new_manufacturer_path %> para
-  cadastrar um novo fabricante.
-  </h3>
+  <% if current_user.admin? %>
+    <h3> Não ha fabricantes cadastrados no sistema, <%= link_to "clique aqui", new_manufacturer_path %> para
+      cadastrar um novo fabricante.
+    </h3>
+    <% else %>
+    <h3> Não ha fabricantes cadastrados no sistema. </h3>
+  <% end %>
+
 <% end %>
 
 <ul>

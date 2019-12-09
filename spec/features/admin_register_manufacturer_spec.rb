@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'Admin register manufacturer' do
   scenario 'successfully without any manufacturers registered' do
-    user = User.create!(email: 'test@test.com', password: '123456', admin: :admin)
+    user = User.create!(email: 'test@test.com', password: '123456', role: :admin)
 
     login_as(user, scope: :user)
     visit root_path
@@ -70,5 +70,32 @@ feature 'Admin register manufacturer' do
     visit new_manufacturer_path
 
     expect(current_path).to eq new_user_session_path
+  end
+
+  scenario 'and user do not have permission to create' do
+    user = User.create!(email: 'test@test.com', password: '123456')
+
+    login_as(user, scope: :user)
+    visit new_manufacturer_path
+
+    expect(page).to have_content('Você não tem autorização!')
+  end
+  scenario 'and user do not see register button' do
+    user = User.create!(email: 'test@test.com', password: '123456')
+
+    login_as(user, scope: :user)
+    visit manufacturers_path
+
+    expect(page).not_to have_content('clique aqui')
+  end
+
+  scenario 'and user do not see register button if manufacturer registered already' do
+    user = User.create!(email: 'test@test.com', password: '123456')
+    login_as(user, scope: :user)
+    Manufacturer.create!(name: 'Fiat')
+
+    visit manufacturers_path
+
+    expect(page).not_to have_content('Registrar novo fabricante')
   end
 end

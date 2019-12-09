@@ -32,4 +32,5 @@
 
 /.vscode
 /.idea
+echo "coverage" >> .gitignore
 

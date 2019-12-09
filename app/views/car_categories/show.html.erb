@@ -25,7 +25,7 @@
   <% end %>
 </table>
 <br>
-
-<div><%= link_to 'Editar Categoria', edit_car_category_path(@car_category) %></div>
-
+<% if current_user.admin? %>
+  <div><%= link_to 'Editar Categoria', edit_car_category_path(@car_category) %></div>
+<% end %>
 <div><%= link_to 'Voltar', car_categories_path %></div>

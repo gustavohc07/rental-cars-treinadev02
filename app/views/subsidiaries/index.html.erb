@@ -1,9 +1,13 @@
 <h1>Filiais</h1>
 <% if @subsidiaries.empty? %>
+  <% if current_user.admin? %>
   <h3>Não existem filiais cadastradas no sistema. <%= link_to 'Clique aqui', new_subsidiary_path %> para cadastrar uma nova filial.</h3>
+  <% else %>
+  <h3>Não existem filiais cadastradas no sistema.</h3>
+  <% end %>
 <% end %>
 
-<% if @subsidiaries.any? %>
+<% if @subsidiaries.any? && current_user.admin? %>
   <%=link_to 'Cadastrar nova filial', new_subsidiary_path %>
 <% end %>
 

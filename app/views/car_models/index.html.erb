@@ -24,9 +24,15 @@
       </tr>
     <% end %>
   </table>
-  <%= link_to 'Registrar novo modelo', new_car_model_path%>
+  <% if current_user.admin? %>
+    <%= link_to 'Registrar novo modelo', new_car_model_path%>
+  <% end %>
 <% else %>
-  <h3>Não há modelos cadastrados no sistema. <%= link_to 'Clique aqui', new_car_model_path %> para cadastrar um novo modelo</h3>
+    <% if current_user.admin? %>
+    <h3>Não há modelos cadastrados no sistema. <%= link_to 'Clique aqui', new_car_model_path %> para cadastrar um novo modelo</h3>
+    <% else %>
+    <h3>Não há modelos cadastrados no sistema.</h3>
+  <% end %>
 <% end %>
 <br>
 <br>

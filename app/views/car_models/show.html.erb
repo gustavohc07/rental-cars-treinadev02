@@ -8,7 +8,9 @@
 <dd> <%=@car_model.car_category.name%> </dd>
 </dl>
 
-<%= link_to 'Editar', edit_car_model_path(@car_model)%>
+<% if current_user.admin? %>
+  <%= link_to 'Editar', edit_car_model_path(@car_model)%>
+<% end %>
 <br>
 <%= link_to "Ir para o fabricante #{@car_model.manufacturer.name}", manufacturer_path(@car_model.manufacturer) %>
 <br>

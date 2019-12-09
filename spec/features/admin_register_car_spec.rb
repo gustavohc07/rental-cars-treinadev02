@@ -2,6 +2,7 @@ require 'rails_helper'
 
 feature 'Admin register car into a fleet' do
   scenario 'successfully' do
+    user = User.create!(email: 'test@test', password: '123456', role: :admin)
     Subsidiary.create!(name: 'Coringa', cnpj: '12345678910001',
                        address: 'Rua Augusta, Bairro Santa Monica, CEP 12345-678, Numero 25')
     CarCategory.create!(name: 'A', daily_rate: 100, car_insurance: 50,
@@ -10,6 +11,7 @@ feature 'Admin register car into a fleet' do
     CarModel.create!(name: 'Prisma', fuel_type: 'Flex', motorization: '1.4',
                      year: 2018, manufacturer_id: 1, car_category_id: 1)
 
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Frota'
     click_on 'Clique aqui'
@@ -30,8 +32,56 @@ feature 'Admin register car into a fleet' do
     expect(page).to have_content('Prisma 1.4 Flex - 2018')
     expect(page).to have_content('HIA0045')
     expect(page).to have_content('Preto')
-    expect(page).to have_content("27323")
+    expect(page).to have_content('27323')
     expect(page).to have_content('Coringa')
     expect(page).to have_content('Voltar')
   end
+
+  scenario 'and must be admin' do
+    user = User.create!(email: 'test@test', password: '123456')
+    Subsidiary.create!(name: 'Coringa', cnpj: '12345678910001',
+                       address: 'Rua Augusta, Bairro Santa Monica, CEP 12345-678, Numero 25')
+    CarCategory.create!(name: 'A', daily_rate: 100, car_insurance: 50,
+                        third_party_insurance: 90)
+    Manufacturer.create!(name: 'Chevrolet')
+    CarModel.create!(name: 'Prisma', fuel_type: 'Flex', motorization: '1.4',
+                     year: 2018, manufacturer_id: 1, car_category_id: 1)
+
+    login_as(user, scope: :user)
+
+    visit new_car_path
+
+    expect(page).to have_content('Você não tem autorização!')
+  end
+
+  scenario 'and user must not see register buttons' do
+    user = User.create!(email: 'test@test', password: '123456')
+
+    login_as(user, scope: :user)
+    visit cars_path
+
+    expect(page).not_to have_content('Clique aqui')
+  end
+
+  scenario 'and user must not see register buttons if cars registered' do
+    Subsidiary.create!(name: 'Coringa', cnpj: '12345678910001',
+                       address: 'Rua Augusta, Bairro Santa Monica, CEP 12345-678, Numero 25')
+
+    CarCategory.create!(name: 'A', daily_rate: 100, car_insurance: 50,
+                        third_party_insurance: 90)
+
+    Manufacturer.create!(name: 'Chevrolet')
+    CarModel.create!(name: 'Prisma', fuel_type: 'Flex', motorization: '1.4',
+                     year: 2018, manufacturer_id: 1, car_category_id: 1)
+    Car.create!(license_plate: 'ABC0001', color: 'Preto', mileage: 0, car_model_id: 1,
+                subsidiary_id: 1)
+    user = User.create!(email: 'test@test', password: '123456')
+
+    login_as(user, scope: :user)
+    visit cars_path
+
+    expect(page).not_to have_content('Registrar novo veiculo')
+  end
 end
+
+#Você não tem autorização!

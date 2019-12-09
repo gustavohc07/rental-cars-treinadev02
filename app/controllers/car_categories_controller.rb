@@ -1,10 +1,13 @@
 class CarCategoriesController < ApplicationController
+  before_action :authenticate_user!
+  before_action :authorize_admin, only: [:new, :create, :edit, :update, :destroy]
+  before_action :set_car_category, only: [:show, :edit, :update]
+
   def index
     @car_categories = CarCategory.all
   end
 
   def show
-    @car_category = CarCategory.find(params[:id])
   end
 
   def new
@@ -21,11 +24,9 @@ class CarCategoriesController < ApplicationController
   end
 
   def edit
-    @car_category = CarCategory.find(params[:id])
   end
 
   def update
-    @car_category = CarCategory.find(params[:id])
     if @car_category.update(car_categories_params)
       redirect_to @car_category
     else
@@ -33,10 +34,19 @@ class CarCategoriesController < ApplicationController
     end
   end
 
+
   private
 
   def car_categories_params
     params.require(:car_category).permit(:name, :car_insurance, :daily_rate,
                                          :third_party_insurance)
+  end
+
+  def authorize_admin
+    redirect_to root_path, notice: 'Você não tem autorização!' unless current_user.admin?
+  end
+
+  def set_car_category
+    @car_category = CarCategory.find(params[:id])
   end
 end

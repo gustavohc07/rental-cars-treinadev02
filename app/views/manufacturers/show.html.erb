@@ -21,6 +21,8 @@
 </table>
 <br>
 
+<% if current_user.admin? %>
 <div><%= link_to 'Editar Fabricante', edit_manufacturer_path(@manufacturer)%></div>
+<% end %>
 
 <div><%= link_to 'Voltar', manufacturers_path%></div>

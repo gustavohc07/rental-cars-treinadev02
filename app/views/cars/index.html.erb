@@ -1,7 +1,9 @@
 <h1>Frota</h1>
 
 <% if @cars.any? %>
-  <%= link_to 'Registrar novo veiculo', new_car_path %>
+  <% if current_user.admin? %>
+    <%= link_to 'Registrar novo veiculo', new_car_path %>
+  <% end %>
   <br>
   <br>
   <table>
@@ -10,6 +12,7 @@
       <th>Cor</th>
       <th>Placa</th>
       <th>Quilometragem</th>
+      <th>Filial</th>
     </tr>
     <% @cars.each do |car| %>
       <tr>
@@ -17,12 +20,17 @@
         <td><%= car.color %></td>
         <td><%= car.license_plate %></td>
         <td><%= car.mileage %></td>
+        <td> <%= link_to "#{car.subsidiary.name}", car_path(car) %></td>
     </tr>
     <% end %>
   </table>
 
 <% else %>
-  <h3>Não existem frotas de veículos cadastradas. <%= link_to 'Clique aqui', new_car_path %> para cadastrar um novo veículo para a frota</h3>
+  <% if current_user.admin? %>
+    <h3>Não existem frotas de veículos cadastradas. <%= link_to 'Clique aqui', new_car_path %> para cadastrar um novo veículo para a frota</h3>
+  <% else %>
+    <h3>Não existem frotas de veículos cadastradas.</h3>
+  <% end %>
 <% end %>
 <br>
 

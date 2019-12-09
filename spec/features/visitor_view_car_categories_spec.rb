@@ -5,6 +5,9 @@ feature 'Visitor View Car Categories' do
     car_category = CarCategory.create!(name: 'Sedan', daily_rate: 24.5,
                                       car_insurance: 12.5,
                                       third_party_insurance: 17.5)
+    user = User.create!(email: 'test@test.com', password: '123456')
+
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Categoria de Carros'
 
@@ -18,6 +21,9 @@ feature 'Visitor View Car Categories' do
     car_category = CarCategory.create!(name: 'Sedan', daily_rate: 24.5,
                                       car_insurance: 12.5,
                                       third_party_insurance: 17.5)
+    user = User.create!(email: 'test@test.com', password: '123456')
+
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Categoria de Carros'
     click_on car_category.name
@@ -30,6 +36,9 @@ feature 'Visitor View Car Categories' do
   end
 
   scenario 'and there are no car car_categories registered' do
+    user = User.create!(email: 'test@test.com', password: '123456')
+
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Categoria de Carros'
 
@@ -40,6 +49,9 @@ feature 'Visitor View Car Categories' do
     CarCategory.create!(name: 'Sedan', daily_rate: 24.5,
                                       car_insurance: 12.5,
                                       third_party_insurance: 17.5)
+    user = User.create!(email: 'test@test.com', password: '123456')
+
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Categoria de Carros'
     click_on 'Sedan'
@@ -49,10 +61,20 @@ feature 'Visitor View Car Categories' do
   end
 
   scenario 'and return to home page' do
+    user = User.create!(email: 'test@test.com', password: '123456')
+
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Categoria de Carros'
     click_on 'Voltar'
 
     expect(current_path).to eq root_path
+  end
+
+  scenario 'and must be logged in' do
+    visit root_path
+    click_on 'Categoria de Carros'
+
+    expect(current_path).to eq new_user_session_path
   end
 end

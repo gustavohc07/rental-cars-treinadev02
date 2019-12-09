@@ -1,1 +1,5 @@
-<%= render partials: 'form', locals: {car: @car}%>
+<h1>Editar <%= @car.car_model.name %></h1>
+
+<%= render partial: 'form', locals: {car: @car}%>
+
+<%= link_to 'Voltar', car_path(@car) %>
