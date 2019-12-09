@@ -21,6 +21,7 @@ class CarsController < ApplicationController
     if @car.save
       redirect_to @car
     else
+      set_car_collection
       render :new
     end
   end

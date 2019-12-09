@@ -1,3 +1,10 @@
+<% if car.errors.any? %>
+  <p>Voce deve corrigir os seguintes erros:</p>
+  <%= car.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+  <% end %>
+<%end %>
+
 <%= form_with model: car, local: true do |f| %>
   <p>
     <%= f.label :license_plate, 'Placa' %>

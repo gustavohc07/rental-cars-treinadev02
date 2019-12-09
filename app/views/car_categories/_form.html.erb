@@ -1,6 +1,6 @@
 <% if car_category.errors.any? %>
   <p>Voce deve corrigir os seguintes erros:</p>
-  <%= car_category.errors.full_message do |message| %>
+  <%= car_category.errors.full_messages.each do |message| %>
     <li><%= message %></li>
     <% end %>
 <% end %>
