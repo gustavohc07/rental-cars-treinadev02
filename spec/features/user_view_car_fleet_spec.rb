@@ -102,30 +102,7 @@ feature 'User view car fleet' do
     expect(current_path).to eq subsidiary_path(subsidiary)
     expect(page).to have_content('Coringa')
   end
-
-  xscenario ' and can come from subsidiary page' do
-    user = User.create!(email: 'test@test', password: '123456')
-
-    Subsidiary.create!(name: 'Coringa', cnpj: '12345678910001',
-                                    address: 'Rua Augusta, Bairro Santa Monica, CEP 12345-678, Numero 25')
-
-    CarCategory.create!(name: 'A', daily_rate: 100, car_insurance: 50,
-                        third_party_insurance: 90)
-
-    Manufacturer.create!(name: 'Chevrolet')
-    CarModel.create!(name: 'Prisma', fuel_type: 'Flex', motorization: '1.4',
-                     year: 2018, manufacturer_id: 1, car_category_id: 1)
-    car = Car.create!(license_plate: 'ABC0001', color: 'Preto', mileage: 0, car_model_id: 1,
-                      subsidiary_id: 1)
-
-    login_as(user, scope: :user)
-    visit car_path(car)
-    click_on 'Ir para pagina da filial'
-    click_on 'Ver frota'
-
-    expect(current_path).to eq car_path(car)
-  end
-
+  
   scenario 'and must be logged in' do
     visit cars_path
 

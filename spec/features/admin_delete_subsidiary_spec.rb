@@ -45,15 +45,4 @@ feature 'Admin delete subsidiary' do
 
     expect(page).not_to have_content('Excluir')
   end
-
-  xscenario 'and must be admin to delete' do
-    subsidiary = Subsidiary.create!(name: 'Bento', cnpj: '12345678910001',
-                       address: 'Rua Augusta, Bairro Santa Monica, CEP 12345-678, Numero 25')
-    user = User.create!(email: 'test@test.com', password: '123456')
-
-    login_as(user, scope: :user)
-    visit subsidiary_path(subsidiary), method: :delete
-
-    expect(page).to have_content('Voce nao tem autorizacao')
-  end
 end

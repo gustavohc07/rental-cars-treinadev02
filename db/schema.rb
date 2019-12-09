@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_06_202957) do
+ActiveRecord::Schema.define(version: 2019_12_09_201853) do
 
   create_table "car_categories", force: :cascade do |t|
     t.string "name"
@@ -60,6 +60,18 @@ ActiveRecord::Schema.define(version: 2019_12_06_202957) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "rentals", force: :cascade do |t|
+    t.date "start_date"
+    t.date "end_date"
+    t.integer "client_id"
+    t.integer "car_category_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "reservation_code"
+    t.index ["car_category_id"], name: "index_rentals_on_car_category_id"
+    t.index ["client_id"], name: "index_rentals_on_client_id"
+  end
+
   create_table "subsidiaries", force: :cascade do |t|
     t.string "name"
     t.string "cnpj"
@@ -76,7 +88,7 @@ ActiveRecord::Schema.define(version: 2019_12_06_202957) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "role", default: 0
+    t.integer "role"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
