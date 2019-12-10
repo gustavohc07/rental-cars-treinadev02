@@ -1,6 +1,9 @@
 class RentalsController < ApplicationController
 
+  before_action :authenticate_user!
+
   def index
+    @rentals = Rental.all
   end
 
   def show
@@ -24,10 +27,25 @@ class RentalsController < ApplicationController
   end
 
   def search
-    
+  end
+
+  def activate
+    @rental = Rental.find(params[:id])
+    @rental.scheduled!
+    flash[:notice] = 'Locação efetivada com sucesso!'
+    redirect_to rentals_path
+  end
+
+  def cancel
+    @rental = Rental.find(params[:id])
+    @rental.canceled!
+    flash[:notice] = 'Locação cancelada!'
+    redirect_to rentals_path
   end
 
   private
+
+
 
   def rental_params
     params.require(:rental).permit(:start_date, :end_date, :car_category_id,

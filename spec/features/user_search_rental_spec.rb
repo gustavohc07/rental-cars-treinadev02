@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'User search rental' do
+xfeature 'User search rental' do
   scenario 'successfully' do
     user = User.create!(email: 'test@test.com', password: '123456',
                         role: :employee)
@@ -12,8 +12,9 @@ feature 'User search rental' do
                             start_date: 1.day.from_now, end_date: 2.days.from_now,
                             reservation_code: 'ABC1234')
     other_rental = Rental.create!(client: client, car_category: category,
-                            start_date: 1.day.from_now, end_date: 2.days.from_now,
-                            reservation_code: 'AAA1234')
+                                  start_date: 1.day.from_now,
+                                  end_date: 2.days.from_now,
+                                  reservation_code: 'AAA1234')
 
     login_as user, scope: :user
     visit root_path

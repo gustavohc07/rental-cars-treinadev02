@@ -168,7 +168,8 @@ feature 'Admin register car into a fleet' do
     CarModel.create!(name: 'Prisma', fuel_type: 'Flex', motorization: '1.4',
                      year: 2018, manufacturer_id: 1, car_category_id: 1)
 
-    Car.create!(license_plate: 'ABC0001', color: 'Preto', mileage: 0, car_model_id: 1,
+    Car.create!(license_plate: 'ABC0001', color: 'Preto', mileage: 0,
+                car_model_id: 1,
                 subsidiary_id: 1)
 
     login_as(user, scope: :user)

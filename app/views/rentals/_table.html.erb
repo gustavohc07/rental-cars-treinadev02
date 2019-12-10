@@ -1,0 +1,73 @@
+<% if rentals.any?  %>
+  <h3>Em andamento</h3><br>
+  <% rentals.each do |rental| %>
+    <% if rental.in_progress? %>
+      <table>
+        <tr>
+          <th>Codigo</th>
+          <th>Cliente</th>
+          <th>Categoria</th>
+          <th>Inicio</th>
+          <th>Fim</th>
+          <th>Status</th>
+        </tr>
+        <tr>
+          <td><%= rental.reservation_code %></td>
+          <td><%= rental.client.description %></td>
+          <td><%= rental.car_category.name %></td>
+          <td><%= rental.start_date.strftime('%d/%m/%Y') %></td>
+          <td><%= rental.end_date.strftime('%d/%m/%Y') %></td>
+          <td>Em andamento</td>
+          <td><%= link_to 'Efetivar', activate_rental_path(rental), method: 'post' %></td>
+        </tr>
+      </table>
+    <% end %>
+  <% end %>
+  <h3>Efetivadas</h3>
+  <% rentals.each do |rental| %>
+    <% if rental.scheduled? %>
+      <table>
+        <tr>
+          <th>Codigo</th>
+          <th>Cliente</th>
+          <th>Categoria</th>
+          <th>Inicio</th>
+          <th>Fim</th>
+          <th>Status</th>
+        </tr>
+        <tr>
+          <td><%= rental.reservation_code %></td>
+          <td><%= rental.client.name %></td>
+          <td><%= rental.car_category.name %></td>
+          <td><%= rental.start_date.strftime('%d/%m/%Y') %></td>
+          <td><%= rental.end_date.strftime('%d/%m/%Y') %></td>
+          <td> Efetivada </td>
+          <td><%= link_to 'Cancelar', cancel_rental_path(rental), method: 'post' %></td>
+        </tr>
+      </table>
+    <% end %>
+  <% end %>
+  <h3>Canceladas</h3>
+  <% rentals.each do |rental| %>
+    <% if rental.canceled? %>
+      <table>
+        <tr>
+          <th>Codigo</th>
+          <th>Cliente</th>
+          <th>Categoria</th>
+          <th>Inicio</th>
+          <th>Fim</th>
+          <th>Status</th>
+        </tr>
+        <tr>
+          <td><%= rental.reservation_code %></td>
+          <td><%= rental.client.name %></td>
+          <td><%= rental.car_category.name %></td>
+          <td><%= rental.start_date.strftime('%d/%m/%Y') %></td>
+          <td><%= rental.end_date.strftime('%d/%m/%Y') %></td>
+          <td> Cancelada </td>
+        </tr>
+      </table>
+    <% end %>
+  <% end %>
+<% end %>
