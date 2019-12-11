@@ -7,4 +7,5 @@ class Car < ApplicationRecord
   validates :mileage, numericality: { greater_than_or_equal_to: 0,
                                       message: 'deve ser maior ou igual a 0' }
 
+  enum availability: [ :available, :rented, :maintenance ]
 end

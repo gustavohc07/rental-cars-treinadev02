@@ -58,6 +58,7 @@
         1,
         null,
         null,
+        1,
         null
       ],
       "/home/gustavo/workspace/rails_treinadev/treinadev-turma2/rental-cars-treinadev02/app/models/client.rb": [
@@ -529,6 +530,6 @@
         0
       ]
     },
-    "timestamp": 1576017467
+    "timestamp": 1576063791
   }
 }

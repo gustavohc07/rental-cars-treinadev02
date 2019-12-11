@@ -52,17 +52,18 @@ feature 'User view car fleet' do
   scenario 'and can view subsidiary fleet, admin or not' do
     user = User.create!(email: 'test@test', password: '123456')
 
-    Subsidiary.create!(name: 'Coringa', cnpj: '12345678910001',
-                       address: 'Rua Augusta, Bairro Santa Monica, CEP 12345-678, Numero 25')
+    subsidiary = Subsidiary.create!(name: 'Coringa', cnpj: '12345678910001',
+                                    address: 'Rua Augusta, Bairro Santa Monica, CEP 12345-678, Numero 25')
 
-    CarCategory.create!(name: 'A', daily_rate: 100, car_insurance: 50,
+    car_category = CarCategory.create!(name: 'A', daily_rate: 100, car_insurance: 50,
                         third_party_insurance: 90)
 
-    Manufacturer.create!(name: 'Chevrolet')
-    CarModel.create!(name: 'Prisma', fuel_type: 'Flex', motorization: '1.4',
-                     year: 2018, manufacturer_id: 1, car_category_id: 1)
-    Car.create!(license_plate: 'ABC0001', color: 'Preto', mileage: 0, car_model_id: 1,
-                subsidiary_id: 1)
+    manufacturer = Manufacturer.create!(name: 'Chevrolet')
+    car_model = CarModel.create!(name: 'Prisma', fuel_type: 'Flex', motorization: '1.4',
+                                 year: 2018, manufacturer: manufacturer,
+                                 car_category: car_category)
+    Car.create!(license_plate: 'ABC0001', color: 'Preto', mileage: 0, car_model: car_model,
+                subsidiary: subsidiary)
 
     login_as(user, scope: :user)
     visit cars_path
@@ -84,7 +85,7 @@ feature 'User view car fleet' do
     user = User.create!(email: 'test@test', password: '123456')
 
     subsidiary = Subsidiary.create!(name: 'Coringa', cnpj: '12345678910001',
-                       address: 'Rua Augusta, Bairro Santa Monica, CEP 12345-678, Numero 25')
+                                    address: 'Rua Augusta, Bairro Santa Monica, CEP 12345-678, Numero 25')
 
     CarCategory.create!(name: 'A', daily_rate: 100, car_insurance: 50,
                         third_party_insurance: 90)
@@ -93,7 +94,7 @@ feature 'User view car fleet' do
     CarModel.create!(name: 'Prisma', fuel_type: 'Flex', motorization: '1.4',
                      year: 2018, manufacturer_id: 1, car_category_id: 1)
     car = Car.create!(license_plate: 'ABC0001', color: 'Preto', mileage: 0, car_model_id: 1,
-                subsidiary_id: 1)
+                      subsidiary_id: 1)
 
     login_as(user, scope: :user)
     visit car_path(car)
