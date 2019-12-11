@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     member do
       post 'activate'
       post 'cancel'
+      post 'start'
     end
   end
   

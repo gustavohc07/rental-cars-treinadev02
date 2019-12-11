@@ -8,6 +8,12 @@ class RentalsController < ApplicationController
 
   def show
     @rental = Rental.find(params[:id])
+    @cars = @rental.car_category.cars # o through no model permite que façamos isso.
+    # @cars = Car.joins(:car_model).where(car_models: {car_category: @rental.car_category})
+    # primeira parte é o nome da associação e a segunda é o nome da tabela
+    # Se a associação for de belongs_to a primeira parte fica no singular. Caso seja
+    # uma associação de has_many, seria no plural a primeira parte (o joins)f.check_box :
+    # Where sempre no plural.
   end
 
   def new
@@ -26,7 +32,16 @@ class RentalsController < ApplicationController
     end
   end
 
+
+  # where retorna uma coleção. Caso não encontre ele retorna nil. Busca por igualdade total. Para parcial o sqlite não tem o like, terá
+  # que ser feito à mão
+  # find buscar por id
+  # find_by busca pelo que a gente quiser, porem retorna sempre o primeiro que ele encontrar
   def search
+    @rentals = Rental.where('reservation_code like?', "%#{params[:q]}%")
+
+    render :index  # cospe a view da index com o novo @rentals - abordagem não clássica
+    #TODO criar a view de search com calma. Solução acima serve como solução mas pode criar complexidade na view do index.
   end
 
   def activate
@@ -43,6 +58,19 @@ class RentalsController < ApplicationController
     redirect_to rentals_path
   end
 
+  def start #criei para acompanhar a aula
+    @rental = Rental.find(params[:id])
+    @rental.scheduled?  # = @rental.update(status: :in_progress)
+
+    @car = Car.find(params[:rental][:car_id])
+    @car.rented!
+    @rental.create_car_rental(car: @car, price: @car.price)
+    flash[:notice] = 'Locação efetivada com sucesso!'
+    redirect_to @rental
+
+    # Com enum ganhamos metodos de classe -> Rental.scheduled retorna todas as locações agendadas.
+  end
+
   private
 
 
@@ -52,3 +80,7 @@ class RentalsController < ApplicationController
                                    :client_id)
   end
 end
+
+
+# @car = Car.find(params[:rental][:car_id])
+# 

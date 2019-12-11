@@ -12,6 +12,16 @@
 
 <p><%= @rental.car_category.name %></p>
 
+<%if @rental.in_progress?%>
+  <%= form_with model: @rental, url: start_rental_path, method: :post do |f|%>
+    <%= f.label :car_id, 'Carro'%>
+    <%= f.collection_select :car_id, @cars, :id, :information %>
+    <%= f.submit 'Iniciar Locação'%>
+  <% end %>
+<%end%>
+
+
+<%# Arrumar aqui o scheduled - Agendado e o in_progress - Em andamento/efetivado %>
 <h3>Status:</h3>
 <% if @rental.in_progress? %>
     <p>Em andamento</p>
