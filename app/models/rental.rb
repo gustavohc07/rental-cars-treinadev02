@@ -3,6 +3,7 @@ class Rental < ApplicationRecord
   belongs_to :car_category
   has_one :car_rental
   has_one :car, through: :car_rental
+  belongs_to :subsidiary
 
   enum status: { scheduled: 0, canceled: 1, in_progress: 5 }
   validate :end_date_must_be_greater_than_start_date
@@ -40,12 +41,18 @@ class Rental < ApplicationRecord
   #   end
   # end
 
-  # def cars_available
-  #   return unless start_date.present? && end_date.present?
+  def cars_available?
 
-  #   if cars_available_at_date_range
+    # carros disponiveis
+    car_models = CarModel.where(car_category: car_category)
+    total_cars = Car.where(car_model: car_models ).count > 0 #aqui cabe fazer, tambem, um joins.
 
-  #   end
-  # end
+
+    # Locacoes agendadas
+    total_rentals = Rental.where(car_category: car_category, subsidiary: subsidiary)
+                          .where("start_date < ? AND end_date > ?", start_date, start_date)
+                          .count
+    (total_cars - total_rentals) > 0
+  end
   
 end
