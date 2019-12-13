@@ -39,7 +39,7 @@ describe Rental do
 
       rental.valid?
 
-      expect(rental.errors.full_messages).to eq(['não devem ser iguais!'])
+      expect(rental.errors.full_messages).to include('não devem ser iguais!')
     end
 
     it 'start date must exist' do

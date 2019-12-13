@@ -60,7 +60,7 @@ class RentalsController < ApplicationController
 
   def start #criei para acompanhar a aula
     @rental = Rental.find(params[:id])
-    @rental.scheduled?  # = @rental.update(status: :in_progress)
+    @rental.in_progress!  # = @rental.update(status: :in_progress)
 
     @car = Car.find(params[:rental][:car_id])
     @car.rented!

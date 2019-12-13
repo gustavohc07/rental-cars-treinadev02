@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature 'User schedule rental' do
-  xscenario 'successfully' do
+  scenario 'successfully' do
     user = User.create!(email: 'test@test.com', password: '123456',
                         role: :employee)
     client = Client.create!(name: 'Gustavo', email: 'gustavo@test.com',

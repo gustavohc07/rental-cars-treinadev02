@@ -4,7 +4,7 @@ class Rental < ApplicationRecord
   has_one :car_rental
   has_one :car, through: :car_rental
 
-  enum status: { scheduled: 0, canceled: 1, in_progress: 5}
+  enum status: { scheduled: 0, canceled: 1, in_progress: 5 }
   validate :end_date_must_be_greater_than_start_date
 
   def end_date_must_be_greater_than_start_date

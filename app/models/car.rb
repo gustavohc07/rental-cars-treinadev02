@@ -12,7 +12,7 @@ class Car < ApplicationRecord
 
   enum status: { available: 0, rented: 5 }
 
-  def information
+  def name
     "#{car_model.name} - #{license_plate}"
   end
 
